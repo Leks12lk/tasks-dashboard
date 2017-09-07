@@ -1,0 +1,26 @@
+
+<ng-include src="'views/promoBlock.html'"></ng-include>
+<div class="well bs-component center-block auth-form">
+	<form class="form-horizontal" ng-controller="loginCtrl" ng-submit="login()">
+		<fieldset>
+			<legend>Login</legend>
+			<div class="form-group">
+				<label for="inputEmail" class="col-md-2 control-label">Email</label>
+				<div class="col-md-10">
+					<input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="loginData.email" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword" class="col-md-2 control-label">Password</label>
+				<div class="col-md-10">
+					<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="loginData.password" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary btn-raised">Submit</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

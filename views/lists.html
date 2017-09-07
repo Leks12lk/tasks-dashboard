@@ -1,0 +1,35 @@
+
+<section class="lists-container" ng-controller="listsCtrl as listsCtrl">
+	<div class="row add-new-list-row">
+		<div class="col-sm-12">
+			<ul class="list-inline list-unstyled">
+				<li>
+					<add-new-list></add-new-list>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<ul id="sortable" class="list-inline list-unstyled">
+				<li ng-repeat="list in listsCtrl.getLists()">
+					<section class="list" ng-controller="listCtrl as listCtrl">
+						<ng-include src="'views/list.html'"></ng-include>
+						<div ng-if="listCtrl.toRecoverList">
+							<span class="pointer text-warning" ng-click="listCtrl.recoverList()" title="Reestablish list">
+								<i class="fa fa-history revert-list" aria-hidden="true" title="Reestablish list"></i>
+							</span>
+						</div>
+					</section>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<script>
+	$(document).ready(function () {
+		$("#sortable").sortable();
+		$("#sortable").disableSelection();
+	})
+</script>

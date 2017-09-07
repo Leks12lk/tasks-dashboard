@@ -1,0 +1,63 @@
+
+<div class="panel panel-info">
+	<div class="panel-heading pointer">
+		<h3 class="panel-title">{{list.title}}</h3>
+		<a class="pointer remove-list-btn" ng-click="listsCtrl.removeList(list.id)">
+			<i class="fa fa-close"></i>
+		</a>
+	</div>
+	<div class="panel-body">
+		<section class="cards-container" ng-controller="listCtrl as listCtrl" ng-init="listCtrl.listId = list.id">
+		
+			<div class="task-card flexbox-container" ng-repeat="card in listCtrl.getCards(list.id)"
+				ng-controller="cardCtrl as cardCtrl">								
+
+				<div ng-if="!cardCtrl.isEditing">
+					{{card.description}}
+
+					<div class="action-buttons">
+						<a ng-click="cardCtrl.editCard(card)" class="pointer text-warning">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						</a>
+						<a ng-click="cardCtrl.deleteCard(card)" class="pointer text-danger">
+							<i class="fa fa-close" aria-hidden="true"></i>
+						</a>
+					</div>
+					
+				</div>
+
+				<div ng-if="cardCtrl.isEditing" class="edit-card">
+					<form ng-submit="cardCtrl.updateCard()">
+						<div class="form-group">
+							<input class="form-control input-sm" type="text" 
+										ng-model="cardCtrl.editingCard.description" 
+										close-editing
+										is-editing="cardCtrl.isEditing">
+						</div>
+						<div class="form-group">
+							<select class="form-control"
+						  				ng-model="cardCtrl.editingCard.listId"
+						  				ng-change="cardCtrl.updateCard()"
+						  				ng-options="list.id as list.title for list in listsCtrl.lists">
+						  </select>
+						</div>
+					</form>
+				</div>
+			
+			
+
+			</div>
+
+
+			<div class="new-card">
+				<form ng-submit="listCtrl.createCard(list)">
+					<div class="form-group">
+					  <input class="form-control" id="focusedInput1" type="text" ng-model="listCtrl.cardDecsription" placeholder="New card">
+					</div>
+				</form>
+			</div>
+
+		</section>
+	</div>
+</div>
+

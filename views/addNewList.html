@@ -1,0 +1,25 @@
+
+<section ng-if="!listsCtrl.newListVisible" class="add-new-list">
+	<button class="btn btn-success btn-fab btn-fab-mini mr5"
+			ng-click="listsCtrl.showNewListForm()">
+		<i class="fa fa-plus add-list-icon"></i>
+	</button>
+	Add New List
+</section>
+<section class="new-list" ng-if="listsCtrl.newListVisible">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{listsCtrl.listName}}</h3>
+			<a class="pointer remove-list-btn" ng-click="listsCtrl.hideNewListForm()">
+				<i class="fa fa-close"></i>
+			</a>
+		</div>
+		<div class="panel-body">
+			<form ng-submit="listsCtrl.addList()">
+				<div class="form-group">
+					<input class="form-control" type="text" ng-model="listsCtrl.listName">
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
